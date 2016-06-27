@@ -1,3 +1,15 @@
 1) Differnece between Mutex and semaphores
 	- Mutexes are very useful to protect data (critical section) from race conditions. Semaphores are usually used to synchronize threads more than to protect critical section.
 	-  The reason for that is that semaphores do not have any ownership. A mutex can be released only by the thread that acquired it (a thread gets ownership of a mutex when waking from a mutex wait). 		However for semaphores any thread (or main) can initialize them to locked (0), and any thread can wait on them (blocks on 0 and decrements its value after) or post to them (increments its value)
+
+2) Here are the rules for debugging stack corruption:
+
+    If a crash is observed when a function returns, this might be due to stack corruption. The return address on the stack might have been corrupted by stack operations of called functions.
+    Crash after an interrupt service routine returns might also be caused by stack corruption.
+    Stack corruption can also be suspected when a passed parameter seems to have a value different from the one passed by the calling function. 
+    When a stack corruption is detected, one should look at the local variables in the called and calling functions to look for possible sources of memory corruption. Check array and pointer declarations for sources of errors.
+    Sometimes stray corruption of a processors registers might also be due to a stack corruption. If a register gets corrupted due to no reason, one possibility is that an offending thread or program corrupted the register context on the stack. When the register is restored as a part of a context switch, the task crashes.
+    Corruption in heap can trickle down to the stack.
+    Stack overflow takes place when a programs function nesting exceeds the stack allocated to the program. This can cause a stack area or heap area corruption. (Depends upon who attempts to access the corrupted memory first, a heap operation or stack operation).
+
+
