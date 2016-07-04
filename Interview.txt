@@ -12,4 +12,25 @@
     Corruption in heap can trickle down to the stack.
     Stack overflow takes place when a programs function nesting exceeds the stack allocated to the program. This can cause a stack area or heap area corruption. (Depends upon who attempts to access the corrupted memory first, a heap operation or stack operation).
 
+3) What is the difference between a thread and a process?
 
+	1. Threads are easier to create than processes since they 
+	don't require a separate address space.
+	2. Multithreading requires careful programming since threads 
+	share data strucures that should only be modified by one thread
+	at a time.  Unlike threads, processes don't share the same 
+	address space.
+	3.  Threads are considered lightweight because they use far 
+	less resources than processes.
+	4.  Processes are independent of each other.  Threads, since they 
+	share the same address space are interdependent, so caution 
+	must be taken so that different threads don't step on each other.  
+	This is really another way of stating #2 above.
+	5.  A process can consist of multiple threads.
+	6.The processes and threads are independent sequences of execution, the typical difference is that threads run in a shared memory space, while processes run in separate memory spaces.
+	A process has a self contained execution environment that means it has a complete, private set of basic run time resources purticularly each process has its own memory space. Threads exist within a		process and every process has at least one thread.
+	Each process provides the resources needed to execute a program. Each process is started with a single thread, known as the primary thread. A process can have multiple threads in addition to the pr		imary thread.
+	On a multiprocessor system, multiple processes can be executed in parallel. Multiple threads of control can exploit the true parallelism possible on multiprocessor systems.
+	Threads have direct access to the data segment of its process but a processes have their own copy of the data segment of the parent process.
+	Changes to the main thread may affect the behavior of the other threads of the process while changes to the parent process does not affect child processes.
+	Processes are heavily dependent on system resources available while threads require minimal amounts of resource, so a process is considered as heavyweight while a thread is termed as a lightweight 		process.
