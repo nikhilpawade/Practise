@@ -34,3 +34,15 @@
 	Threads have direct access to the data segment of its process but a processes have their own copy of the data segment of the parent process.
 	Changes to the main thread may affect the behavior of the other threads of the process while changes to the parent process does not affect child processes.
 	Processes are heavily dependent on system resources available while threads require minimal amounts of resource, so a process is considered as heavyweight while a thread is termed as a lightweight 		process.
+
+4)Volatile
+
+	1. The volatile type qualifier can be used to declare objects that may be modified in ways unknown to the compiler or have other unknown side effects (e.g. modification via a signal interrupt, 
+	hardware register, or memory mapped I/O). Subject to the implementation-defined abstract machine, volatile objects inhibit some optimizations such as keeping the objects in registers and some types 	     of code motion.
+	2.Higher optimization levels can reveal problems in some programs that are not apparent at lower optimization levels, for example, missing volatile qualifiers.
+	This can manifest itself in a number of ways. Code might become stuck in a loop while polling hardware, multi-threaded code might exhibit strange behavior, or optimization might result in the 
+	removal of code that implements deliberate timing delays. In such cases, it is possible that some variables are required to be declared as volatile.
+	The declaration of a variable as volatile tells the compiler that the variable can be modified at any time externally to the implementation, for example, by the operating system, by another thread 		of execution such as an interrupt routine or signal handler, or by hardware. Because the value of a volatile-qualified variable can change at any time, the actual variable in memory must always 	be accessed whenever the variable is referenced in code. This means the compiler cannot perform optimizations on the variable, for example, caching its value in a register to avoid memory accesses. 
+	Similarly, when used in the context of implementing a sleep or timer delay, declaring a variable as volatile tells the compiler that a specific type of behavior is intended, and that such code must		 not be optimized in such a way that it removes the intended functionality.
+	In contrast, when a variable is not declared as volatile, the compiler can assume its value cannot be modified in unexpected ways. Therefore, the compiler can perform optimizations on the variable.
+	The use of the volatile keyword is illustrated in the two sample routines of the following table. Both of these routines loop reading a buffer until a status flag buffer_full is set to true. The st	     ate of buffer_full can change asynchronously with program flow. 
