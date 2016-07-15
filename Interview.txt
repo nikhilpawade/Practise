@@ -35,6 +35,14 @@
 	Changes to the main thread may affect the behavior of the other threads of the process while changes to the parent process does not affect child processes.
 	Processes are heavily dependent on system resources available while threads require minimal amounts of resource, so a process is considered as heavyweight while a thread is termed as a lightweight 		process.
 
+3.1) Multi-threding and Multi-procesing?
+	Multi-threading refers to an application with multiple threads running within a process, while multi-processing refers to an application organised across multiple OS-level processes.
+	A thread is a stream of instructions within a process. Each thread has its own instruction pointer, set of registers and stack memory. The virtual address space is process specific, or common to 	     	all threads within a process. So, data on the heap can be readily accessed by all threads, for good or ill.
+	Multi-threading is a more "light weight" form of concurrency: there is less context per thread than per process. As a result thread lifetime, context switching and synchronisation costs are lower. 	     The shared address space (noted above) means data sharing requires no extra work.
+	Multi-processing has the opposite benefits. Since processes are insulated from each other by the OS, an error in one process cannot bring down another process. Contrast this with multi-threading, 
+	in which an error in one thread can bring down all the threads in the process. Further, individual processes may run as different users and have different permissions.
+
+
 4)Volatile
 
 	1. The volatile type qualifier can be used to declare objects that may be modified in ways unknown to the compiler or have other unknown side effects (e.g. modification via a signal interrupt, 
