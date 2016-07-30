@@ -18,28 +18,26 @@ main()
 	reverse_words(string);
 }
 
-reverse_words(char *string) {
-	int length,length1,i;
+void *reverse_words(char *string) {
+	int length,i;
 	char *string1,*str;
-	char token[2] = "-";
+	int c =0;
 	length = strlen(string);
-	printf("%s %d\n",string,length);
 	string1 = (char*)malloc(sizeof(char)*length);
-	string1 = string;
-	printf("%s\n",string1);
-	str = strtok(string,token);
-	printf("%s\n",str);
-	while(str !=NULL) {
-		printf("%s\n",str);
-		length1 = strlen(str);
-		for(i=0;i<length1;i++) {
-			string1[i] = str[length1-i];
-
+	str = strtok(string," .-");
+	while(str != NULL){
+		length = strlen(str);
+		length--;
+		for(i=0;i<=length;i++) {
+			string1[c] = str[length-i];
+			c++;
 		}
-		printf("%s\n",str);
+		string1[c] = ' ';
+		c++;
+		str = strtok(NULL," .-");
 	}
-	
-	
+	printf("%s\n",string1);
+	return 0;
 
 
 
