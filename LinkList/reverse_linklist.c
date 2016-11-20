@@ -37,14 +37,33 @@ print(struct st *ptr) {
 		printf("%d ",ptr->num);
 		ptr = ptr->next;
 	}
+	printf("\n");
 
 }
+reverse(struct st **ptr) {
+	struct st *prev = NULL;
+	struct st *current,*next;
+	current = *ptr;
+	
+	while(current != NULL) {
+
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+
+	}
+	*ptr = prev;
+}
+
 main()
 {
 	struct st *head = NULL;
 	head = malloc(sizeof(struct st));
 	head->num = 10;
 	insert(&head);	
+	print(head);
+	reverse(&head);
 	print(head);
 
 
