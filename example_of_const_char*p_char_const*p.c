@@ -18,11 +18,11 @@ int main()
     p = &z;
     printf(" %c\n",*p);
 
-    char * const q; // address cannot be changed
+    char * const q = &z; // address cannot be changed
     char x;
    *q = 'c'; 
     //q = &z;   // this will not work
-//    printf(" %c\n",*q);
+    printf(" %c %c\n",*q,z);
 
     const char * const a; // both address and value cannot be changed
     char b;

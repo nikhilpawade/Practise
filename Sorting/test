@@ -1,0 +1,26 @@
+1 8 6 56 7 
+1 8 6 56 7 
+1 8 6 56 7 
+1 6 8 56 7 
+1 6 8 56 7 
+pindex = 2
+1 6 7 56 8 
+pindex = 2
+star 0 end 4 pindex 2
+1 6 7 56 8 
+pindex = 1
+1 6 7 56 8 
+pindex = 1
+star 0 end 1 pindex 1
+1 6 7 56 8 
+1 6 7 56 8 
+1 6 7 56 8 
+1 6 7 56 8 
+pindex = 3
+1 6 7 8 56 
+pindex = 3
+star 3 end 4 pindex 3
+1 6 7 8 56 
+1 6 7 8 56 
+1 6 7 8 56 
+1 6 7 8 56 

@@ -57,3 +57,9 @@
 
 5) Wireless Driver Intro :
 https://wireless.wiki.kernel.org/en/developers/documentation/glossary
+
+https://github.com/vishnu430/programming/
+
+6)Spin locks
+Spin locks are a low-level synchronization mechanism suitable primarily for use on shared memory multiprocessors.
+
