@@ -28,10 +28,6 @@ int quik_sort(int *a, int start, int end) {
 		quik_sort(a, pindex + 1, end);
 	}
 
-	for (i =0; i <5; i++) {
-		printf("%d ",a[i]);
-	}
-	printf("\n");
 
 }
 main()
@@ -44,5 +40,9 @@ main()
 	}
 	printf("\n");
 	quik_sort(a,0,4);
+	for (i =0; i <5; i++) {
+		printf("%d ",a[i]);
+	}
+	printf("\n");
 	
 }

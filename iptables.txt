@@ -1,0 +1,41 @@
+Tables
+There are three tables in iptables. Any rules or custom chains that you create will go into one of these tables. The filter table is the default, and is the one you'll use the most. You can think of it as the firewalling portion of iptables. The filter table contains these built-in chains:
+
+INPUT
+Processes incoming packets
+FORWARD
+Processes packets routed through the host
+OUTPUT
+Processes outgoing packets
+
+The NAT table is used only to change the packet's Source Address field or Destination Address field. If you have a single public, routable IP address in front of a LAN that uses private addresses, which is common, NAT translates the source IP addresses on outgoing packets to the public address. It doesn't matter if you have a hundred hosts sharing the connection-it will appear that all your traffic is coming from a single host. Conversely, you may use it to enable access to public services with private IPs. The NAT table has these built-in chains:
+
+PREROUTING
+Alters incoming packets before routing
+OUTPUT
+Alters locally-generated packets before routing
+POSTROUTING
+Alters packets after routing
+
+
+The mangle table lets you alter packet headers as you like. Here are a few ideas for inspiration:
+
+Change the TOS field of packets for QoS (there are now better ways for managing QoS, but there it is)
+MARKing packets to collect statistics for filtering, logging, or routing
+Limit packet rate
+It has these built-in chains:
+
+PREROUTING
+Alters incoming packets before routing
+OUTPUT
+Alters locally generated packets before routing
+INPUT
+Alters packets destined for the local machine
+FORWARD
+Processes packets routed through the host
+POSTROUTING
+Alters packets on their way out, after routing
+
+Packets coming into your network must first pass through the mangle table, then the NAT table, and finally, the filter table.
+
+User-defined chains can improve performance because packets traverse your rules and chains in the order they are listed. Defining your own chains lets you create shortcuts, so packets can jump directly to the chains you want them to traverse, instead of passing through a bunch of irrelevant rules and chains first. Or, you may save some configuration steps by building a custom chain to use over and over.

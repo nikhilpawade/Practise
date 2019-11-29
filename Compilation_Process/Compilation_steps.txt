@@ -1,0 +1,52 @@
+
+Compiler converts a C program into an executable. There are four phases for a C program to become an executable:
+
+1) Pre-processing
+2) Compilation
+3) Assembly
+4) Linking
+
+By executing below command, We get the all intermediate files in the current directory along with the executable.
+
+ $gcc –Wall –save-temps hello_world.c –o hello_world
+
+1) Pre-processing:
+
+This is the first phase through which source code is passed. This phase include:
+
+This includes joining continued lines (lines ending with a \) and Removal of Comments
+Expansion of Macros
+Expansion of the included files.
+The preprocessed output is stored in the filename.i
+
+$gcc -E hello_world.c --> print preproceser output on stdout.
+$gcc -E -o hellow_world.i hello_world.c --> redirect preproceser output in file.
+
+2) Compilation:
+The next step is to compile filename.i and produce an; intermediate compiled output file filename.s
+In this stage, the preprocessed code is translated to assembly instructions specific to the target processor architecture. These form an intermediate human readable language
+$gcc -S hello_world.c
+
+3)Assembly:
+In this phase the filename.s is taken as input and turned into filename.o by assembler.
+During this stage, an assembler is used to translate the assembly instructions to object code. The output consists of actual instructions to be run by the target processor.
+This file contain machine level instructions. At this phase, only existing code is converted into machine language, the function calls like printf() are not resolved.
+$gcc -c hello_world.c
+Running the above command will create a file named hello_world.o, containing the object code of the program. The contents of this file is in a binary format and can be inspected using hexdump or od by running either one of the following commands:
+
+$hexdump hello_world.o
+$od -c hello_world.o
+
+4) Linking:
+This is the final phase in which all the linking of function calls with their definitions are done. Linker knows where all these functions are implemented. Linker does some extra work also, it adds some extra code to our program which is required when the program starts and ends. For example, there is a code which is required for setting up the environment like passing command line arguments. This task can be easily verified by using $size filename.o and $size filename. Through these commands, we know that how output file increases from an object file to an executable file. This is because of the extra code that linker adds with our program.
+
+The object code generated in the assembly stage is composed of machine instructions that the processor understands but some pieces of the program are out of order or missing. To produce an executable program, the existing pieces have to be rearranged and the missing ones filled in. This process is called linking.
+
+The linker will arrange the pieces of object code so that functions in some pieces can successfully call functions in other ones. It will also add pieces containing the instructions for library functions used by the program. In the case of the “Hello, World!” program, the linker will add the object code for the puts function.
+
+The result of this stage is the final executable program. When run without options, cc will name this file a.out. To name the file something else, pass the -o option to cc:
+
+$gcc -o hello_world hello_world.c
+
+
+
