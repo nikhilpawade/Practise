@@ -1,10 +1,10 @@
 #include<stdio.h>
-fibo(int num) {
-	int n = 0;
-	if(num != 0) {
-		printf("%d ",fibo( n--));
 
+int fib(int n) {
+	if(n <= 1) {
+		return 1;
 	}
+	return fib(n-1) + fib(n-2);
 
 
 
@@ -13,9 +13,6 @@ main() {
 	int num;
 	printf("Enter the number for fibnaccis series\n");
 	scanf("%d",&num);
-	fibo(num);
-
-
-
+	printf("%d\n", fib(num));
 
 }

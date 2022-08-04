@@ -7,28 +7,21 @@ struct st {
 
 
 insert(struct st **ptr) {
-	struct st *tmp,*cptr,*pptr;
+	struct st *tmp,*cptr;
 	tmp = malloc(sizeof(struct st));
 	printf("Enter the number to insert\n");
 	scanf("%d",&(tmp->num));
-	if(*ptr == NULL || (tmp->num < (*ptr)->num)  ) {
+	if(*ptr == NULL || (tmp->num <= (*ptr)->num)  ) {
 		tmp->next = *ptr;
 		*ptr = tmp;
 	} else {
+		
 		cptr = *ptr;
-		while(cptr->next != NULL && (tmp->num > cptr->num)) {
-			pptr = cptr;
+		while(cptr->next != NULL && tmp->num > cptr->next->num) {
 			cptr = cptr->next;
 		} 
-		if(cptr->num > tmp->num ) {
-			tmp->next = cptr;
-			pptr->next = tmp;	
-		} else {
-			tmp->next = NULL;
-			cptr->next = tmp;
-		}
-
-
+		tmp->next = cptr->next;
+		cptr->next = tmp;	
 	}
 
 }
@@ -61,6 +54,7 @@ main()
 	struct st *head = NULL;
 	head = malloc(sizeof(struct st));
 	head->num = 10;
+	head->next = NULL;
 	insert(&head);	
 	print(head);
 	reverse(&head);

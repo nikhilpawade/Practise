@@ -2,7 +2,7 @@
 char * const p; 
 const char * const p;*/ // these are the three conditions,
 
-// const char *p;const char * const p; pointer value cannot be changed
+// const char *p; pointer value cannot be changed
 
 // char * const p; pointer address cannot be changed
 

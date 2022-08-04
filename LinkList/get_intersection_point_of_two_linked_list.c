@@ -48,10 +48,6 @@ int __getInterssectionNode(struct st *head1, struct st *head2, int d)
 int getInterssectionNode(struct st *head1, struct st *head2)
 {
 	int c1 , c2, d;
-	if (c1 > c2) {
-		
-	} else {
-	}
 	c1 = find_length(head1);	
 	c2 = find_length(head2);
 	if (c1 > c2) {
